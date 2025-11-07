@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ФрешМаркет - Інтернет-магазин продуктів</title>
+    <link rel="stylesheet" href="index.css">
+    <meta name="format-detection" content="telephone=no">
+</head>
+<body>
+    <!-- Сторінка магазину (прихована спочатку) -->
+    <div id="storePage" style="display: none;">
+        <header>
+            <div class="top-bar">
+                <div class="container">
+                    <div> Доставка по всій Україні</div>
+                    <div>
+                        <svg class="phone-icon" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M92.5,124.8a83.6,83.6,0,0,0,39,38.9,8,8,0,0,0,7.9-.6l25-16.7a7.9,7.9,0,0,1,7.6-.7l46.8,20.1a7.9,7.9,0,0,1,4.8,8.3A48,48,0,0,1,176,216,136,136,0,0,1,40,80,48,48,0,0,1,81.9,32.4a7.9,7.9,0,0,1,8.3,4.8l20.1,46.9a8,8,0,0,1-.6,7.5L93,117A8,8,0,0,0,92.5,124.8Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+                        </svg>
+                        0 800 123 456
+                    </div>
+                </div>
+            </div>
+            <div class="header-main">
+                <div class="logo">
+                    <span class="logo-icon"></span>
+                    <span>ФрешМаркет</span>
+                </div>
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="Знайти продукти...">
+                    <button id="searchBtn">Шукати</button>
+                </div>
+                <div class="header-actions">
+                    <div class="header-action" id="profileBtn">
+                        <span class="action-icon">
+                            <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M24,21A10,10,0,1,1,34,11,10,10,0,0,1,24,21ZM24,5a6,6,0,1,0,6,6A6,6,0,0,0,24,5Z"/>
+                                <path d="M42,47H6a2,2,0,0,1-2-2V39A16,16,0,0,1,20,23h8A16,16,0,0,1,44,39v6A2,2,0,0,1,42,47ZM8,43H40V39A12,12,0,0,0,28,27H20A12,12,0,0,0,8,39Z"/>
+                            </svg>
+                        </span>
+                        <span class="action-label">Профіль</span>
+                    </div>
+                    <div class="header-action" id="favoritesBtn">
+                        <span class="action-icon">
+                            <svg height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+                                <g transform="translate(0 -1028.4)">
+                                    <path d="m8.5 1032.4c-3.0376 0-5.5 2.5-5.5 5.5 0 1.6 0.6167 2.9 1.5938 3.9 0.1337 0.2 0.2591 0.3 0.4062 0.5l7 7.1 7-7.1 0.344-0.4c1.013-1 1.656-2.4 1.656-4 0-3-2.462-5.5-5.5-5.5-1.329 0-2.549 0.4-3.5 1.2-0.951-0.8-2.1711-1.2-3.5-1.2z" fill="#c0392b"/>
+                                    <path d="m8.8889 1033.4c-2.7001 0-4.8889 2.2-4.8889 4.9 0 1.3 0.5481 2.5 1.4167 3.4 0.1188 0.2 0.2303 0.3 0.3611 0.4l6.2222 6.3 6.222-6.3 0.306-0.3c0.901-0.9 1.472-2.1 1.472-3.5 0-2.7-2.189-4.9-4.889-4.9-1.181 0-2.266 0.4-3.111 1.1-0.845-0.7-1.93-1.1-3.1111-1.1z" fill="#e74c3c"/>
+                                </g>
+                            </svg>
+                        </span>
+                        <span class="action-label">Обране</span>
+                        <span class="cart-badge favorites-badge" id="favoritesCount">0</span>
+                    </div>
+                    <div class="header-action" id="cartBtn">
+                        <span class="action-icon">
+                            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M397.78,316H192.65A15,15,0,0,1,178,304.33L143.46,153.85a15,15,0,0,1,14.62-18.36H432.35A15,15,0,0,1,447,153.85L412.4,304.33A15,15,0,0,1,397.78,316ZM204.59,286H385.84l27.67-120.48H176.91Z"/>
+                                <path d="M222,450a57.48,57.48,0,1,1,57.48-57.48A57.54,57.54,0,0,1,222,450Zm0-84.95a27.48,27.48,0,1,0,27.48,27.47A27.5,27.5,0,0,0,222,365.05Z"/>
+                                <path d="M368.42,450a57.48,57.48,0,1,1,57.48-57.48A57.54,57.54,0,0,1,368.42,450Zm0-84.95a27.48,27.48,0,1,0,27.48,27.47A27.5,27.5,0,0,0,368.42,365.05Z"/>
+                                <path d="M158.08,165.49a15,15,0,0,1-14.23-10.26L118.14,78H70.7a15,15,0,1,1,0-30H129a15,15,0,0,1,14.23,10.26l29.13,87.49a15,15,0,0,1-14.23,19.74Z"/>
+                            </svg>
+                        </span>
+                        <span class="action-label">Кошик</span>
+                        <span class="cart-badge" id="cartCount">0</span>
+                    </div>
+                    <div class="header-action" id="logoutBtn" style="display: none;">
+                        <span class="action-icon">
+                            <svg height="24" width="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z" fill="currentColor"/>
+                            </svg>
+                        </span>
+                        <span class="action-label">Вихід</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <nav>
+            <div class="nav-container">
+                <a href="#fruits" class="nav-item active" data-category="fruits"> Фрукти</a>
+                <a href="#vegetables" class="nav-item" data-category="vegetables"> Овочі</a>
+                <a href="#meat" class="nav-item" data-category="meat"> М'ясо-морепродукти</a>
+                <a href="#dairy" class="nav-item" data-category="dairy"> Молочне</a>
+                <a href="#bakery" class="nav-item" data-category="bakery"> Випічка</a>
+                <a href="#drinks" class="nav-item" data-category="drinks"> Напої</a>
+                <a href="#frozen" class="nav-item" data-category="frozen"> Заморожені</a>
+            </div>
+        </nav>
+
+        <section class="hero">
+            <div class="hero-banner">
+                <div class="hero-content">
+                    <h1>Свіжі продукти щодня!</h1>
+                    <p>Безкоштовна доставка при замовленні від 500 грн</p>
+                    <button class="btn-primary" id="startShoppingBtn">Почати покупки</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="categories">
+            <h2 class="section-title"> Акційні пропозиції</h2>
+            <div class="categories-grid" id="categoriesGrid"></div>
+        </section>
+
+        <!-- Секції товарів за категоріями -->
+        <section class="products" id="fruitsSection">
+            <h2 class="section-title"> Фрукти</h2>
+            <div class="products-grid" id="fruitsGrid"></div>
+        </section>
+
+        <section class="products" id="vegetablesSection">
+            <h2 class="section-title"> Овочі</h2>
+            <div class="products-grid" id="vegetablesGrid"></div>
+        </section>
+
+        <section class="products" id="meatSection">
+            <h2 class="section-title"> М'ясо-морепродукти</h2>
+            <div class="products-grid" id="meatGrid"></div>
+        </section>
+
+        <section class="products" id="dairySection">
+            <h2 class="section-title"> Молочне</h2>
+            <div class="products-grid" id="dairyGrid"></div>
+        </section>
+
+        <section class="products" id="bakerySection">
+            <h2 class="section-title"> Випічка</h2>
+            <div class="products-grid" id="bakeryGrid"></div>
+        </section>
+
+        <section class="products" id="drinksSection">
+            <h2 class="section-title"> Напої</h2>
+            <div class="products-grid" id="drinksGrid"></div>
+        </section>
+
+        <section class="products" id="frozenSection">
+            <h2 class="section-title"> Заморожені</h2>
+            <div class="products-grid" id="frozenGrid"></div>
+        </section>
+
+        <!-- Модальне вікно кошика -->
+        <div id="cartModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>
+                        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" style="width: 24px; height: 24px; display: inline-block; vertical-align: middle; margin-right: 8px;">
+                            <path d="M397.78,316H192.65A15,15,0,0,1,178,304.33L143.46,153.85a15,15,0,0,1,14.62-18.36H432.35A15,15,0,0,1,447,153.85L412.4,304.33A15,15,0,0,1,397.78,316ZM204.59,286H385.84l27.67-120.48H176.91Z"/>
+                            <path d="M222,450a57.48,57.48,0,1,1,57.48-57.48A57.54,57.54,0,0,1,222,450Zm0-84.95a27.48,27.48,0,1,0,27.48,27.47A27.5,27.5,0,0,0,222,365.05Z"/>
+                            <path d="M368.42,450a57.48,57.48,0,1,1,57.48-57.48A57.54,57.54,0,0,1,368.42,450Zm0-84.95a27.48,27.48,0,1,0,27.48,27.47A27.5,27.5,0,0,0,368.42,365.05Z"/>
+                            <path d="M158.08,165.49a15,15,0,0,1-14.23-10.26L118.14,78H70.7a15,15,0,1,1,0-30H129a15,15,0,0,1,14.23,10.26l29.13,87.49a15,15,0,0,1-14.23,19.74Z"/>
+                        </svg>
+                        Ваш кошик
+                    </h2>
+                    <span class="close" id="closeCart">&times;</span>
+                </div>
+                <div class="modal-body" id="cartItems">
+                    <div class="empty-cart">
+                        <div class="empty-cart-icon">🛒</div>
+                        <p>Ваш кошик порожній</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="cart-total">
+                        <span>Загальна сума:</span>
+                        <span id="cartTotal">0 ₴</span>
+                    </div>
+                    <button class="btn-primary checkout-btn" id="checkoutBtn">Оформити замовлення</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Модальне вікно обраного -->
+        <div id="favoritesModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>
+                        <svg height="24" width="24" xmlns="http://www.w3.org/2000/svg" style="width: 24px; height: 24px; display: inline-block; vertical-align: middle; margin-right: 8px;">
+                            <g transform="translate(0 -1028.4)">
+                                <path d="m8.5 1032.4c-3.0376 0-5.5 2.5-5.5 5.5 0 1.6 0.6167 2.9 1.5938 3.9 0.1337 0.2 0.2591 0.3 0.4062 0.5l7 7.1 7-7.1 0.344-0.4c1.013-1 1.656-2.4 1.656-4 0-3-2.462-5.5-5.5-5.5-1.329 0-2.549 0.4-3.5 1.2-0.951-0.8-2.1711-1.2-3.5-1.2z" fill="#c0392b"/>
+                            </g>
+                        </svg>
+                        Обрані товари
+                    </h2>
+                    <span class="close" id="closeFavorites">&times;</span>
+                </div>
+                <div class="modal-body" id="favoritesItems">
+                    <div class="empty-cart">
+                        <div class="empty-cart-icon">❤️</div>
+                        <p>У вас немає обраних товарів</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Модальне вікно профілю -->
+        <div id="profileModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>
+                        <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" style="width: 24px; height: 24px; display: inline-block; vertical-align: middle; margin-right: 8px;">
+                            <path d="M24,21A10,10,0,1,1,34,11,10,10,0,0,1,24,21ZM24,5a6,6,0,1,0,6,6A6,6,0,0,0,24,5Z"/>
+                            <path d="M42,47H6a2,2,0,0,1-2-2V39A16,16,0,0,1,20,23h8A16,16,0,0,1,44,39v6A2,2,0,0,1,42,47ZM8,43H40V39A12,12,0,0,0,28,27H20A12,12,0,0,0,8,39Z"/>
+                        </svg>
+                        Профіль
+                    </h2>
+                    <span class="close" id="closeProfile">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div id="profileContent">
+                        <div class="profile-info" id="profileInfo">
+                            <div class="profile-field">
+                                <label>Повне ім'я:</label>
+                                <span id="profileName">-</span>
+                            </div>
+                            <div class="profile-field">
+                                <label>Електронна пошта:</label>
+                                <span id="profileEmail">-</span>
+                            </div>
+                            <div class="profile-field">
+                                <label>Телефон:</label>
+                                <span id="profilePhone">-</span>
+                            </div>
+                            <div class="profile-field">
+                                <label>Адреса доставки:</label>
+                                <span id="profileAddress">-</span>
+                            </div>
+                            <div class="profile-field">
+                                <label>Дата реєстрації:</label>
+                                <span id="profileDate">-</span>
+                            </div>
+                        </div>
+                        <div id="profileNotLoggedIn" style="display: none;">
+                            <div class="empty-cart">
+                                <div class="empty-cart-icon">👤</div>
+                                <p>Будь ласка, увійдіть в акаунт</p>
+                                <button class="btn-primary" id="goToRegisterFromProfile">Зареєструватися</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>Зв'язок з нами</h3>
+                    <p>
+                        <svg class="footer-icon" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M92.5,124.8a83.6,83.6,0,0,0,39,38.9,8,8,0,0,0,7.9-.6l25-16.7a7.9,7.9,0,0,1,7.6-.7l46.8,20.1a7.9,7.9,0,0,1,4.8,8.3A48,48,0,0,1,176,216,136,136,0,0,1,40,80,48,48,0,0,1,81.9,32.4a7.9,7.9,0,0,1,8.3,4.8l20.1,46.9a8,8,0,0,1-.6,7.5L93,117A8,8,0,0,0,92.5,124.8Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
+                        </svg>
+                        0 800 123 456
+                    </p>
+                    <p>
+                        <svg class="footer-icon" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                            <rect class="cls-1" height="34.78" rx="3.14" width="47.94" x="8.03" y="14.61"/>
+                            <polygon class="cls-2" points="32 36.96 10.68 21.41 10.53 21.3 8.03 19.48 8.03 21.33 9.75 22.58 9.9 22.69 31.22 38.24 32 36.96"/>
+                            <path class="cls-2" d="M56,18.72,38.41,31.55l-6.91,5h0L14,49.39h1.64l13.75-10a5,5,0,0,1,5.89,0l10.67,7.79a11.77,11.77,0,0,0,6.92,2.25A3.13,3.13,0,0,0,56,46.25V19.92h0Z"/>
+                            <path class="cls-3" d="M56,17.75v28.5a2.89,2.89,0,0,1-.13.88,3.13,3.13,0,0,1-3,2.26h0a2.32,2.32,0,0,1-2.32-2.32V16.2l.15-.11,2-1.48h.14A3.15,3.15,0,0,1,56,17.75Z"/>
+                            <path class="cls-4" d="M52.83,14.61h0a.5.5,0,0,0-.26.08l-1.91,1.4-.15.11L32.56,29.31a.68.68,0,0,1-.79,0L13.49,16l-1.73-1.27a.5.5,0,0,0-.26-.08h-.33A3.15,3.15,0,0,0,8,17.75v28.5a2.89,2.89,0,0,0,.13.88,3.13,3.13,0,0,0,3,2.26h0a2.32,2.32,0,0,0,2.32-2.32V23.44L27,33.34l4.45,3.25a1.41,1.41,0,0,0,1.66,0l4.29-3.14,13.07-9.54.15-.11L56,19.92V17.75A3.15,3.15,0,0,0,52.83,14.61Z"/>
+                            <polygon class="cls-3" points="13.49 23.46 10.68 21.41 10.53 21.3 8.03 19.48 8.03 21.33 9.75 22.58 9.9 22.69 13.49 25.31 13.49 23.46"/>
+                        </svg>
+                        info@freshmarket.ua
+                    </p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Ми в соцмережах</h3>
+                    <div class="social-links">
+                        <a href="#" class="social-icon" title="Telegram">
+                            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                <linearGradient gradientUnits="userSpaceOnUse" id="SVGID_1_" x1="256" x2="256" y1="0" y2="510.1322">
+                                    <stop offset="0" style="stop-color:#41BCE7"/>
+                                    <stop offset="1" style="stop-color:#22A6DC"/>
+                                </linearGradient>
+                                <circle cx="256" cy="256" r="256" fill="url(#SVGID_1_)"/>
+                                <path d="M380.6,147.3l-45.7,230.5c0,0-6.4,16-24,8.3l-105.5-80.9L167,286.7l-64.6-21.7c0,0-9.9-3.5-10.9-11.2c-1-7.7,11.2-11.8,11.2-11.8l256.8-100.7C359.5,141.2,380.6,131.9,380.6,147.3z" fill="#FFFFFF"/>
+                                <path d="M197.2,375.2c0,0-3.1-0.3-6.9-12.4c-3.8-12.1-23.3-76.1-23.3-76.1l155.1-98.5c0,0,9-5.4,8.6,0c0,0,1.6,1-3.2,5.4c-4.8,4.5-121.8,109.7-121.8,109.7" fill="#D2E4F0"/>
+                                <path d="M245.8,336.2l-41.7,38.1c0,0-3.3,2.5-6.8,0.9l8-70.7" fill="#B5CFE4"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" title="Instagram">
+                            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <linearGradient gradientUnits="userSpaceOnUse" id="Nepojmenovaný_přechod_27" x1="328.27" x2="183.73" y1="508.05" y2="3.95">
+                                        <stop offset="0" stop-color="#ffdb73"/>
+                                        <stop offset="0.08" stop-color="#fdad4e"/>
+                                        <stop offset="0.15" stop-color="#fb832e"/>
+                                        <stop offset="0.19" stop-color="#fa7321"/>
+                                        <stop offset="0.23" stop-color="#f6692f"/>
+                                        <stop offset="0.37" stop-color="#e84a5a"/>
+                                        <stop offset="0.48" stop-color="#e03675"/>
+                                        <stop offset="0.55" stop-color="#dd2f7f"/>
+                                        <stop offset="0.68" stop-color="#b43d97"/>
+                                        <stop offset="0.97" stop-color="#4d60d4"/>
+                                        <stop offset="1" stop-color="#4264db"/>
+                                    </linearGradient>
+                                </defs>
+                                <rect height="465.06" rx="107.23" ry="107.23" width="465.06" x="23.47" y="23.47" fill="url(#Nepojmenovaný_přechod_27)"/>
+                                <path d="M331,115.22a66.92,66.92,0,0,1,66.65,66.65V330.13A66.92,66.92,0,0,1,331,396.78H181a66.92,66.92,0,0,1-66.65-66.65V181.87A66.92,66.92,0,0,1,181,115.22H331m0-31H181c-53.71,0-97.66,44-97.66,97.66V330.13c0,53.71,44,97.66,97.66,97.66H331c53.71,0,97.66-44,97.66-97.66V181.87c0-53.71-43.95-97.66-97.66-97.66Z" fill="#fff"/>
+                                <path d="M256,198.13A57.87,57.87,0,1,1,198.13,256,57.94,57.94,0,0,1,256,198.13m0-31A88.87,88.87,0,1,0,344.87,256,88.87,88.87,0,0,0,256,167.13Z" fill="#fff"/>
+                                <circle cx="346.81" cy="163.23" r="21.07" fill="#fff"/>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-icon" title="Facebook">
+                            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M512,256c0,-141.385 -114.615,-256 -256,-256c-141.385,0 -256,114.615 -256,256c0,127.777 93.616,233.685 216,252.89l0,-178.89l-65,0l0,-74l65,0l0,-56.4c0,-64.16 38.219,-99.6 96.695,-99.6c28.009,0 57.305,5 57.305,5l0,63l-32.281,0c-31.801,0 -41.719,19.733 -41.719,39.978l0,48.022l71,0l-11.35,74l-59.65,0l0,178.89c122.385,-19.205 216,-125.113 216,-252.89Z" fill="#1877f2"/>
+                                <path d="M355.65,330l11.35,-74l-71,0l0,-48.022c0,-20.245 9.917,-39.978 41.719,-39.978l32.281,0l0,-63c0,0 -29.297,-5 -57.305,-5c-58.476,0 -96.695,35.44 -96.695,99.6l0,56.4l-65,0l0,74l65,0l0,178.89c13.033,2.045 26.392,3.11 40,3.11c13.608,0 26.966,-1.065 40,-3.11l0,-178.89l59.65,0Z" fill="#fff"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 ФрешМаркет. Всі права захищені.</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Сторінка реєстрації (показуємо спочатку) -->
+    <div id="registerPage" class="register-page">
+        <div class="register-container">
+            <div class="logo-register">
+                 ФрешМаркет
+            </div>
+            
+            <h1 class="register-title">Створіть обліковий запис</h1>
+            
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="fullName">Повне ім'я</label>
+                    <input type="text" id="fullName" name="fullName" required placeholder="Введіть ваше повне ім'я">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Електронна пошта</label>
+                    <input type="email" id="email" name="email" required placeholder="your@email.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Телефон</label>
+                    <input type="tel" id="phone" name="phone" required placeholder="+380 (XX) XXX-XX-XX">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Пароль</label>
+                    <input type="password" id="password" name="password" required placeholder="Мінімум 6 символів" minlength="6">
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword">Підтвердження пароля</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Повторіть пароль">
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Адреса доставки</label>
+                    <input type="text" id="address" name="address" required placeholder="Введіть вашу адресу">
+                </div>
+
+                <button type="submit" class="register-btn">Зареєструватися</button>
+            </form>
+
+            <div class="login-link">
+                Вже маєте акаунт? <a href="#" id="loginLink">Увійти</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
