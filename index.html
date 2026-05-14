@@ -13,7 +13,7 @@
         <header>
             <div class="top-bar">
                 <div class="container">
-                    <div> Доставка по всій Україні</div>
+                    <div>Доставка по всій Україні</div>
                     <div>
                         <svg class="phone-icon" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
                             <path d="M92.5,124.8a83.6,83.6,0,0,0,39,38.9,8,8,0,0,0,7.9-.6l25-16.7a7.9,7.9,0,0,1,7.6-.7l46.8,20.1a7.9,7.9,0,0,1,4.8,8.3A48,48,0,0,1,176,216,136,136,0,0,1,40,80,48,48,0,0,1,81.9,32.4a7.9,7.9,0,0,1,8.3,4.8l20.1,46.9a8,8,0,0,1-.6,7.5L93,117A8,8,0,0,0,92.5,124.8Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="16"/>
@@ -24,7 +24,7 @@
             </div>
             <div class="header-main">
                 <div class="logo">
-                    <span class="logo-icon"></span>
+                    
                     <span>ФрешМаркет</span>
                 </div>
                 <div class="search-bar">
@@ -79,13 +79,14 @@
 
         <nav>
             <div class="nav-container">
-                <a href="#fruits" class="nav-item active" data-category="fruits"> Фрукти</a>
-                <a href="#vegetables" class="nav-item" data-category="vegetables"> Овочі</a>
-                <a href="#meat" class="nav-item" data-category="meat"> М'ясо-морепродукти</a>
-                <a href="#dairy" class="nav-item" data-category="dairy"> Молочне</a>
-                <a href="#bakery" class="nav-item" data-category="bakery"> Випічка</a>
-                <a href="#drinks" class="nav-item" data-category="drinks"> Напої</a>
-                <a href="#frozen" class="nav-item" data-category="frozen"> Заморожені</a>
+                <a href="#fruits" class="nav-item active" data-category="fruits">Фрукти</a>
+                <a href="#vegetables" class="nav-item" data-category="vegetables">Овочі</a>
+                <a href="#meat" class="nav-item" data-category="meat">М'ясо-морепродукти</a>
+                <a href="#dairy" class="nav-item" data-category="dairy">Молочне</a>
+                <a href="#bakery" class="nav-item" data-category="bakery">Випічка</a>
+                <a href="#drinks" class="nav-item" data-category="drinks">Напої</a>
+                <a href="#frozen" class="nav-item" data-category="frozen">Заморожені</a>
+                <a href="#premium" class="nav-item" data-category="premium">Підписки</a>
             </div>
         </nav>
 
@@ -100,43 +101,106 @@
         </section>
 
         <section class="categories">
-            <h2 class="section-title"> Акційні пропозиції</h2>
+            <h2 class="section-title">Акційні пропозиції</h2>
             <div class="categories-grid" id="categoriesGrid"></div>
         </section>
 
+        <!-- Преміальні плани підписки -->
+        <section class="premium-section" id="premiumSection">
+            <h2 class="section-title">Преміальна модель монетизації</h2>
+            <div class="premium-plans-grid">
+                <div class="premium-card">
+                    <div class="premium-card-header">Individual Pro</div>
+                    <div class="premium-card-price">299 <span>₴</span></div>
+                    <div class="premium-card-desc">Безлімітна доставка від 300 грн. Пріоритетне пакування. Персональні знижки від ШІ.</div>
+                    <button class="btn-primary premium-btn" onclick="selectPlan('individual_pro', 299, 'Individual Pro')">Обрати план</button>
+                </div>
+                <div class="premium-card premium-card--featured">
+                    <div class="premium-card-badge">Популярний</div>
+                    <div class="premium-card-header">Family Ultimate</div>
+                    <div class="premium-card-price">599 <span>₴</span></div>
+                    <div class="premium-card-desc">До 5 акаунтів. Повна автоматизація замовлень. Доступ до камер зберігання.</div>
+                    <button class="btn-primary premium-btn" onclick="selectPlan('family_ultimate', 599, 'Family Ultimate')">Обрати план</button>
+                </div>
+                <div class="premium-card">
+                    <div class="premium-card-header">Business Elite</div>
+                    <div class="premium-card-price">1999 <span>₴</span></div>
+                    <div class="premium-card-desc">До 20 осіб. Окремий менеджер. Формування кошика за бюджетом офісу.</div>
+                    <button class="btn-primary premium-btn" onclick="selectPlan('business_elite', 1999, 'Business Elite')">Обрати план</button>
+                </div>
+            </div>
+
+            <h2 class="section-title" style="margin-top: 40px;">Спеціалізовані сервіси</h2>
+            <div class="premium-plans-grid">
+                <div class="premium-card premium-card--service">
+                    <div class="premium-card-header">UltraFast (15 хв)</div>
+                    <div class="premium-card-price premium-card-price--accent">+95 <span>₴</span></div>
+                    <div class="premium-card-desc">Для екстрених ситуацій (забули інгредієнт для вечері).</div>
+                    <button class="btn-primary premium-btn" onclick="selectPlan('ultrafast', 95, 'UltraFast (15 хв)')">Додати до замовлення</button>
+                </div>
+                <div class="premium-card premium-card--service">
+                    <div class="premium-card-header">Kitchen Concierge</div>
+                    <div class="premium-card-price">350 <span>₴</span></div>
+                    <div class="premium-card-desc">Кур'єр не тільки доставить, а й допоможе розкласти все за правилами товарного сусідства.</div>
+                    <button class="btn-primary premium-btn" onclick="selectPlan('kitchen_concierge', 350, 'Kitchen Concierge')">Додати до замовлення</button>
+                </div>
+                <div class="premium-card premium-card--service">
+                    <div class="premium-card-header">NightShift</div>
+                    <div class="premium-card-price">150 <span>₴</span></div>
+                    <div class="premium-card-desc">Доставка з 00:00 до 06:00 для тих, хто працює вночі.</div>
+                    <button class="btn-primary premium-btn" onclick="selectPlan('nightshift', 150, 'NightShift')">Додати до замовлення</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Модальне вікно підписки -->
+        <div id="premiumModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Оформлення підписки</h2>
+                    <span class="close" id="closePremium">&times;</span>
+                </div>
+                <div class="modal-body" id="premiumModalBody">
+                </div>
+                <div class="modal-footer">
+                    <button class="btn-primary checkout-btn" id="confirmPremiumBtn">Підтвердити</button>
+                </div>
+            </div>
+        </div>
+
         <!-- Секції товарів за категоріями -->
         <section class="products" id="fruitsSection">
-            <h2 class="section-title"> Фрукти</h2>
+            <h2 class="section-title">Фрукти</h2>
             <div class="products-grid" id="fruitsGrid"></div>
         </section>
 
         <section class="products" id="vegetablesSection">
-            <h2 class="section-title"> Овочі</h2>
+            <h2 class="section-title">Овочі</h2>
             <div class="products-grid" id="vegetablesGrid"></div>
         </section>
 
         <section class="products" id="meatSection">
-            <h2 class="section-title"> М'ясо-морепродукти</h2>
+            <h2 class="section-title">М'ясо-морепродукти</h2>
             <div class="products-grid" id="meatGrid"></div>
         </section>
 
         <section class="products" id="dairySection">
-            <h2 class="section-title"> Молочне</h2>
+            <h2 class="section-title">Молочне</h2>
             <div class="products-grid" id="dairyGrid"></div>
         </section>
 
         <section class="products" id="bakerySection">
-            <h2 class="section-title"> Випічка</h2>
+            <h2 class="section-title">Випічка</h2>
             <div class="products-grid" id="bakeryGrid"></div>
         </section>
 
         <section class="products" id="drinksSection">
-            <h2 class="section-title"> Напої</h2>
+            <h2 class="section-title">Напої</h2>
             <div class="products-grid" id="drinksGrid"></div>
         </section>
 
         <section class="products" id="frozenSection">
-            <h2 class="section-title"> Заморожені</h2>
+            <h2 class="section-title">Заморожені</h2>
             <div class="products-grid" id="frozenGrid"></div>
         </section>
 
@@ -157,7 +221,7 @@
                 </div>
                 <div class="modal-body" id="cartItems">
                     <div class="empty-cart">
-                        <div class="empty-cart-icon">🛒</div>
+                        
                         <p>Ваш кошик порожній</p>
                     </div>
                 </div>
@@ -187,7 +251,7 @@
                 </div>
                 <div class="modal-body" id="favoritesItems">
                     <div class="empty-cart">
-                        <div class="empty-cart-icon">❤️</div>
+                        
                         <p>У вас немає обраних товарів</p>
                     </div>
                 </div>
@@ -233,7 +297,7 @@
                         </div>
                         <div id="profileNotLoggedIn" style="display: none;">
                             <div class="empty-cart">
-                                <div class="empty-cart-icon">👤</div>
+                                
                                 <p>Будь ласка, увійдіть в акаунт</p>
                                 <button class="btn-primary" id="goToRegisterFromProfile">Зареєструватися</button>
                             </div>
@@ -314,7 +378,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>© 2024 ФрешМаркет. Всі права захищені.</p>
+                <p>© 2024ФрешМаркет. Всі права захищені.</p>
             </div>
         </footer>
     </div>
@@ -323,7 +387,7 @@
     <div id="registerPage" class="register-page">
         <div class="register-container">
             <div class="logo-register">
-                 ФрешМаркет
+                ФрешМаркет
             </div>
             
             <h1 class="register-title">Створіть обліковий запис</h1>
