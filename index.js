@@ -385,7 +385,7 @@ function renderProductsToGrid(products, gridId) {
         card.className = "product-card";
         card.innerHTML = `
             <button class="favorite-btn ${isFavorite ? 'active' : ''}" data-id="${p.id}">
-                ${isFavorite ? '❤️' : '🤍'}
+                ${isFavorite ? '️' : ''}
             </button>
             <div class="product-image"></div>
             <div class="product-info">
@@ -480,7 +480,7 @@ function updateFavoritesUI() {
     if (favorites.length === 0) {
         favoritesItems.innerHTML = `
             <div class="empty-cart">
-                <div class="empty-cart-icon">❤️</div>
+                <div class="empty-cart-icon">️</div>
                 <p>У вас немає обраних товарів</p>
             </div>
         `;
@@ -494,7 +494,7 @@ function updateFavoritesUI() {
                 return `
                 <div class="product-card">
                     <button class="favorite-btn ${isFavorite ? 'active' : ''}" data-id="${item.id}">
-                        ${isFavorite ? '❤️' : '🤍'}
+                        ${isFavorite ? '️' : ''}
                     </button>
                     <div class="product-image"></div>
                     <div class="product-info">
@@ -674,7 +674,7 @@ function checkAuth() {
         const daysDiff = timeDiff / (1000 * 3600 * 24);
         
         if (daysDiff < 1) {
-            showNotification(`🎉 Ласкаво просимо, ${userData.fullName.split(' ')[0]}! Раді бачити вас у ФрешМаркет!`);
+            showNotification(` Ласкаво просимо, ${userData.fullName.split(' ')[0]}! Раді бачити вас у ФрешМаркет!`);
         }
     } else {
         // Користувач не авторизований - показуємо кнопку реєстрації
@@ -960,7 +960,7 @@ function checkout() {
     
     const userData = JSON.parse(localStorage.getItem('freshmarket_user') || '{}');
     
-    alert(`Замовлення на суму ${total} ₴ оформлено!\nДоставка за адресою: ${userData.address}\nДякуємо за покупку, ${userData.fullName.split(' ')[0]}! 🎉`);
+    alert(`Замовлення на суму ${total} ₴ оформлено!\nДоставка за адресою: ${userData.address}\nДякуємо за покупку, ${userData.fullName.split(' ')[0]}! `);
     
     // Очищаємо кошик
     cart = [];
@@ -968,6 +968,50 @@ function checkout() {
     saveCartToStorage();
     closeCartModal();
 }
+
+// ================== ПРЕМІАЛЬНІ ПЛАНИ ==================
+function selectPlan(planId, price, planName) {
+    const isLoggedIn = localStorage.getItem('freshmarket_loggedIn') === 'true';
+
+    if (!isLoggedIn) {
+        if (confirm('Для оформлення підписки потрібна реєстрація. Бажаєте зареєструватися?')) {
+            showRegisterPage();
+        }
+        return;
+    }
+
+    const modal = document.getElementById('premiumModal');
+    const body = document.getElementById('premiumModalBody');
+
+    body.innerHTML = `
+        <div class="premium-confirm-info">
+            <h3>${planName}</h3>
+            <div class="price-big">${price} ₴</div>
+            <p>Натисніть «Підтвердити», щоб оформити підписку/послугу.</p>
+        </div>
+    `;
+
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+
+    document.getElementById('confirmPremiumBtn').onclick = function() {
+        const userData = JSON.parse(localStorage.getItem('freshmarket_user') || '{}');
+        const name = userData.fullName ? userData.fullName.split(' ')[0] : 'клієнт';
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+        showNotification(` «${planName}» успішно оформлено! Дякуємо, ${name}!`);
+    };
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const closeBtn = document.getElementById('closePremium');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+            document.getElementById('premiumModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+    }
+});
 
 // ================== СПОВІЩЕННЯ ==================
 function showNotification(message) {
@@ -999,8 +1043,24 @@ function setupNavigation() {
         item.addEventListener("click", (e) => {
             e.preventDefault();
             const category = item.dataset.category;
+
+            if (category === 'premium') {
+                // Знімаємо активний клас з усіх, ставимо на premium
+                document.querySelectorAll(".nav-item").forEach(i => i.classList.remove("active"));
+                item.classList.add("active");
+                // Скролимо до секції підписок
+                const premiumSection = document.getElementById('premiumSection');
+                if (premiumSection) {
+                    window.scrollTo({
+                        top: premiumSection.offsetTop - 80,
+                        behavior: "smooth"
+                    });
+                }
+                return;
+            }
+
             filterProductsByCategory(category);
-            
+
             // Плавний скрол до товарів на мобільних пристроях
             if (window.innerWidth < 768) {
                 const targetSection = document.getElementById(category + 'Section');
@@ -1064,3 +1124,4 @@ window.removeFromCart = removeFromCart;
 window.toggleFavorite = toggleFavorite;
 window.showRegisterPage = showRegisterPage;
 window.showStorePage = showStorePage;
+window.selectPlan = selectPlan;
